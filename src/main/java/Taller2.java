@@ -52,19 +52,10 @@ public class Taller2 {
 
 
     public static String[] transformarPalabra(String[] a) {
-        String[] b = new String[a.length];
          for (int i=0; i<a.length; i++) {
-             b = a[i].toLowerCase().replace(" ", "").split("");
-             for (int j=0; j<b.length;j++){
-                 b[j] = b[j].replace("ú", "u");
-                 b[j] = b[j].replace("á", "a");
-                 b[j] = b[j].replace("é", "e");
-                 b[j] = b[j].replace("í", "i");
-                 b[j] = b[j].replace("+ó", "o");
-                 System.out.print(b[j]);
-             }
+             a[i].toLowerCase().replace(" ", "");
          }
-        return b;
+        return a;
     }
 
     private static String[] ingresarPalabra() {
