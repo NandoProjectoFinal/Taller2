@@ -7,12 +7,14 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
+
 public class Taller2 {
     static String ruta = "C:\\Users\\HP\\blabla\\cadenas.txt";
     public static void main(String[] args) {
         String[] a = ingresarPalabra();
         String[] b= transformarPalabra(a);
         validar(b);
+
     }
     public static boolean validar(String s[]) {
         int c = 0;
@@ -45,10 +47,19 @@ public class Taller2 {
     }
 
 
-    private static String[] transformarPalabra(String[] a) {
-        for (int i=0; i<a.length; i++) {
-            a[i] = a[i].replace(" ", "").toLowerCase();
-        }
+    public static String[] transformarPalabra(String[] a) {
+        String[] b;
+         for (int i=0; i<a.length; i++) {
+             b = a[i].toLowerCase().replace(" ", "").split("");
+             for (int j=0; j<b.length;j++){
+                 b[j] = b[j].replace("ú", "u");
+                 b[j] = b[j].replace("á", "a");
+                 b[j] = b[j].replace("é", "e");
+                 b[j] = b[j].replace("í", "i");
+                 b[j] = b[j].replace("+ó", "o");
+                 System.out.print(b[j]);
+             }
+         }
         return a;
     }
 
