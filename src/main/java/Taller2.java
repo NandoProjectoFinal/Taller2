@@ -1,44 +1,72 @@
+import org.junit.platform.commons.util.StringUtils;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
+
 public class Taller2 {
+    static String ruta = "C:\\Users\\HP\\blabla\\cadenas.txt";
     public static void main(String[] args) {
-        String a = ingresarPalabra();
-        String b= transformarPalabra(a);
+        String[] a = ingresarPalabra();
+        String[] b= transformarPalabra(a);
         validar(b);
-    }
-    public static boolean validar(String s) {
-        int fin = s.length()-1;
-        int ini=0;
-        boolean b=true;
 
-        while(ini < fin){
-            if(s.charAt(ini)!=s.charAt(fin)){
-                b=false;
+    }
+    public static boolean validar(String s[]) {
+        int c = 0;
+        for (int i=0; i<s.length; i++){
+            int fin = s[i].length()-1;
+            int ini=0;
+            boolean b=true;
+            while(ini < fin){
+                if(s[i].charAt(ini)!=s[i].charAt(fin)){
+                    b=false;
+                }
+                ini++;
+                fin--;
             }
-            ini++;
-            fin--;
+            if(b){
+                System.out.print("\nEs palindromo.");
+                System.out.println(s[i]);
+                b=true;
+                c++;
+            }
+            else{
+                System.out.print("\nNo es palindromo.");
+                b = false;
+            }
+
         }
-        if(b)
-            System.out.print("\nEs palindromo.");
-        else
-            System.out.print("\nNo es palindromo.");
-
-        return b;
+        if (c==s.length){
+            return true;
+        }
+        else{return false;}
     }
 
 
-    private static String transformarPalabra(String a) {
-        String palabra2= a.replace(" ","");
-        return palabra2;
+    public static String[] transformarPalabra(String[] a) {
+         for (int i=0; i<a.length; i++) {
+             a[i].toLowerCase().replace(" ", "");
+         }
+        return a;
     }
 
-    private static String ingresarPalabra() {
-        Scanner teclado= new Scanner(System.in);
-        String palabra = teclado.next()+teclado.nextLine();
+    private static String[] ingresarPalabra() {
+        Path archivo = Paths.get(ruta);
+        String contenido = "";
+        try {
+            contenido = new String(Files.readAllBytes(archivo));
+        } catch (IOException e) {
+            System.out.println("El archivo no pudo ser leido");
+        }
+        String[] palabra = contenido.split("\n");
         return palabra;
     }
-
-
-
 }
