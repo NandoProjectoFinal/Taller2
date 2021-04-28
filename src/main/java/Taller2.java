@@ -1,9 +1,12 @@
 import org.junit.platform.commons.util.StringUtils;
 
 import java.io.IOException;
+import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
@@ -31,6 +34,7 @@ public class Taller2 {
             }
             if(b){
                 System.out.print("\nEs palindromo.");
+                System.out.println(s[i]);
                 b=true;
                 c++;
             }
@@ -48,7 +52,7 @@ public class Taller2 {
 
 
     public static String[] transformarPalabra(String[] a) {
-        String[] b;
+        String[] b = new String[a.length];
          for (int i=0; i<a.length; i++) {
              b = a[i].toLowerCase().replace(" ", "").split("");
              for (int j=0; j<b.length;j++){
@@ -60,7 +64,7 @@ public class Taller2 {
                  System.out.print(b[j]);
              }
          }
-        return a;
+        return b;
     }
 
     private static String[] ingresarPalabra() {
